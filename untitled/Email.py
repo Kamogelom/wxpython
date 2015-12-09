@@ -83,8 +83,15 @@ class Email(wx.Frame):
         self.status.SetLabel("sending...")
 
     def onOpen(self,e):
-        pass
+        openFileDialog = wx.FileDialog(self, "open", "", "",
+                                       "All files (*.*)|*.*",
+                                       wx.FD_OPEN | wx.FD_FILE_MUST_EXIST)
+        openFileDialog.ShowModal()
 
+        f =open(openFileDialog.GetPath(),'r')
+        print f.read()
+        openFileDialog.Destroy()
+        f.close()
 
 if __name__ == "__main__":
     app = wx.App(False)
